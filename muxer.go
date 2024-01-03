@@ -92,6 +92,10 @@ type Muxer struct {
 	forceSwitch    bool
 }
 
+func (m *Muxer) Server() *muxerServer {
+	return m.server
+}
+
 // Start initializes the muxer.
 func (m *Muxer) Start() error {
 	if m.Variant == 0 {
@@ -320,7 +324,6 @@ func (m *Muxer) WriteH26x(ntp time.Time, pts time.Duration, au [][]byte) error {
 
 		for _, nalu := range au {
 			typ := h264.NALUType(nalu[0] & 0x1F)
-
 			switch typ {
 			case h264.NALUTypeIDR:
 				randomAccess = true
