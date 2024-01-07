@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-func (s *muxerServer) CurrentIDs() (*uint64, *uint64) {
+func (s *muxerServer) LastIDs() (*uint64, *uint64) {
 	var segID, partID *uint64
 	if len(s.segments) > 0 {
 		seg := s.segments[len(s.segments)-1]
